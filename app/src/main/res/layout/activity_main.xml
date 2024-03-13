@@ -22,7 +22,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical"
-		tools:context="com.dimowner.audiorecorder.app.main.MainActivity">
+		tools:context="com.ph.audiorecorder.app.main.MainActivity">
 
 	<LinearLayout
 			android:id="@+id/toolbar"
@@ -140,14 +140,14 @@
 					android:layout_gravity="center"
 					tools:visibility="visible"/>
 
-			<com.dimowner.audiorecorder.app.widget.WaveformViewNew
+			<com.ph.audiorecorder.app.widget.WaveformViewNew
 					android:id="@+id/record"
 					android:layout_width="wrap_content"
 					android:layout_height="@dimen/waveform_height"
 					android:layout_marginBottom="@dimen/notification_btn"
 					/>
 
-			<com.dimowner.audiorecorder.app.widget.RecordingWaveformView
+			<com.ph.audiorecorder.app.widget.RecordingWaveformView
 					android:id="@+id/recording_view"
 					android:layout_width="wrap_content"
 					android:layout_height="@dimen/waveform_height"

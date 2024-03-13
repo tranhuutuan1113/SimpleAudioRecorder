@@ -6,106 +6,104 @@ apply plugin: 'kotlin-kapt'
 //apply plugin: 'com.google.gms.google-services'
 
 android {
-	namespace 'com.dimowner.audiorecorder'
-	compileSdkVersion 33
-	defaultConfig {
-		applicationId "com.dimowner.audiorecorder"
-		minSdkVersion 21
-		targetSdkVersion 33
-		versionCode 934
-		versionName "0.9.33-230715"
-	}
+    namespace 'com.ph.audiorecorder'
+    compileSdk 33
+    defaultConfig {
+        applicationId "com.ph.audiorecorder"
+        minSdkVersion 21
+        targetSdkVersion 33
+        versionCode 937
+        versionName "0.9.34-240312"
+    }
 
-	buildFeatures {
-		viewBinding true
-		buildConfig true
-	}
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
 
-	def keystorePropertiesFile = rootProject.file("keystore.properties")
-	def keystoreProperties = new Properties()
-	keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    def keystoreProperties = new Properties()
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
-	signingConfigs {
-		dev {
-			storeFile file('key/debug/debug.keystore')
-			storePassword 'android'
-			keyAlias 'androiddebugkey'
-			keyPassword 'android'
-		}
-		release {
-			storeFile file(keystoreProperties['prodStoreFile'])
-			storePassword keystoreProperties['prodStorePassword']
-			keyAlias keystoreProperties['prodKeyAlias']
-			keyPassword keystoreProperties['prodKeyPassword']
-		}
-	}
+    signingConfigs {
+        dev {
+            storeFile file('key/debug/debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+        release {
+            storeFile file(keystoreProperties['prodStoreFile'])
+            storePassword keystoreProperties['prodStorePassword']
+            keyAlias keystoreProperties['prodKeyAlias']
+            keyPassword keystoreProperties['prodKeyPassword']
+        }
+    }
 
-	buildTypes {
-		release {
-			minifyEnabled true
-			shrinkResources true
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 //			firebaseCrashlytics {
 //				mappingFileUploadEnabled true
 //			}
-		}
-		debug {
-			minifyEnabled false
-		}
-	}
+        }
+        debug {
+            minifyEnabled false
+        }
+    }
 
-	flavorDimensions "default"
+    flavorDimensions "default"
 
-	productFlavors {
-		debugConfig {
-			dimension "default"
-			applicationId "com.dimowner.audiorecorder.debug"
-			signingConfig = signingConfigs.dev
-		}
-		releaseConfig {
-			dimension "default"
-			signingConfig = signingConfigs.dev
-			applicationId "com.dimowner.audiorecorder"
-		}
-	}
+    productFlavors {
+        debugConfig {
+            dimension "default"
+            applicationId "com.ph.audiorecorder.debug"
+            signingConfig = signingConfigs.dev
+        }
+        releaseConfig {
+            dimension "default"
+            signingConfig = signingConfigs.dev
+            applicationId "com.ph.audiorecorder"
+        }
+    }
 
-	compileOptions {
-		sourceCompatibility = JavaVersion.VERSION_17
-		targetCompatibility = JavaVersion.VERSION_17
-	}
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 
-	lintOptions {
-		abortOnError false
-	}
+    lintOptions {
+        abortOnError false
+    }
 }
 
 // Remove not needed buildVariants.
 android.variantFilter { variant ->
-	if (variant.buildType.name == 'release'
-			&& variant.getFlavors().get(0).name == 'debugConfig') {
-		variant.setIgnore(true)
-	}
-	if (variant.buildType.name == 'debug'
-			&& variant.getFlavors().get(0).name == 'releaseConfig') {
-		variant.setIgnore(true)
-	}
+    if (variant.buildType.name == 'release' && variant.getFlavors().get(0).name == 'debugConfig') {
+        variant.setIgnore(true)
+    }
+    if (variant.buildType.name == 'debug' && variant.getFlavors().get(0).name == 'releaseConfig') {
+        variant.setIgnore(true)
+    }
 }
 
 dependencies {
-	def androidX = "1.3.0"
-	def coroutines = "1.6.4"
-	def timber = "5.0.1"
+    def androidX = "1.3.0"
+    def coroutines = "1.6.4"
+    def timber = "5.0.1"
 
-	//Kotlin
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
-	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
 
-	//Timber
-	implementation "com.jakewharton.timber:timber:$timber"
-	implementation "androidx.recyclerview:recyclerview:$androidX"
+    //Timber
+    implementation "com.jakewharton.timber:timber:$timber"
+    implementation "androidx.recyclerview:recyclerview:$androidX"
 
-	implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 
 //	// Import the BoM for the Firebase platform
 //	implementation platform('com.google.firebase:firebase-bom:26.1.0')
@@ -113,4 +111,36 @@ dependencies {
 //	// When using the BoM, you don't specify versions in Firebase library dependencies
 //	implementation 'com.google.firebase:firebase-crashlytics'
 //	implementation 'com.google.firebase:firebase-analytics'
+
+
+//    implementation "com.android.support:appcompat-v7:27.1.0"
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    // For loading and tinting drawables on older versions of the platform
+    implementation "androidx.appcompat:appcompat-resources:1.6.1"
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+    implementation "io.reactivex.rxjava2:rxjava:2.1.11"
+
+    // okhttp
+//    // define a BOM and its version
+//    implementation(platform("com.squareup.okhttp3:okhttp-bom:3.14.9"))
+//
+//    // define any required OkHttp artifacts without version
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+
+//    def lifecycle_version = "2.6.0-alpha01"
+//    // ViewModel
+//    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+//    // ViewModel utilities for Compose
+//    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
+//    // LiveData
+//    implementation("androidx.lifecycle:lifecycle-live data-ktx:$lifecycle_version")
+//
+//    implementation 'com.github.bumptech.glide:glide:4.13.2'
+
 }

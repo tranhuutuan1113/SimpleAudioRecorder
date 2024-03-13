@@ -70,6 +70,7 @@
 	<string name="delete">Delete</string>
 	<string name="restore">Restore</string>
 	<string name="info">Information</string>
+	<string name="login">Login</string>
 	<string name="rename">Rename</string>
 	<string name="dont_ask_again">Don\'t ask again</string>
 	<string name="open_with">Open with&#8230;</string>
@@ -285,4 +286,8 @@
 	</string-array>
 
 	<string name="app_widget_description">Start recording widget</string>
+
+<!--	Login Activity-->
+	<string name="login_success">Login successfully!</string>
+	<string name="login_fail">Login fail!</string>
 </resources>
